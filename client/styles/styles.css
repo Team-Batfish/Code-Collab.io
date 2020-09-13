@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  background-color: ghostwhite;
+}
+
+/* LOGIN PAGE */
+
+.heading {
+  margin-top: 70px;
+  font-family: "Roboto Mono", sans-serif;
+  padding-bottom: 300px;
+}
+
+.LoginOuterContainer {
+  text-align: center;
+}
+
+.LoginInnerContainer {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(211, 211, 218);
+  width: 25%;
+  padding: 20px;
+}
+
+/* SIGNUP PAGE */
+
+.SignUpOuterContainer {
+  text-align: center;
+}
+
+.SignUpInnerContainer {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(211, 211, 218);
+  width: 25%;
+  padding: 20px;
+}
