@@ -3,6 +3,7 @@
 //valid/invalid status
 //corresponding user id
 
+const sessionController = {};
 
 //verify session
 //checks if ssid is in the session table of DB
@@ -14,3 +15,5 @@
 //Occurs on log-out
 //deletes row of session table corresponding to session id of user
 //(may occur automatically based on postgresql sessions)
+
+module.exports = sessionController;
