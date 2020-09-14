@@ -11,14 +11,15 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-//userController.createUser
 
 //handle sign-up requests
 app.post('/signup', userController.checkUsername, userController.createUser, cookieController.setCookie, (req, res) => {
-  res.status(200).json({user: res.locals.user, files: res.locals.filesArr});
+  //returns a user object
+  res.status(200).json({user: res.locals.user});
 });
 //handle login requests
 app.post('/login', userController.verifyUser, userController.getFiles, cookieController.setCookie, (req, res) => {
+  //returns a user object and a files array
   res.status(200).json({user: res.locals.user, files: res.locals.filesArr});
 });
 //handle log-out requests
