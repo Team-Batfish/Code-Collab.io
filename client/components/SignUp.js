@@ -5,6 +5,13 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  // fetch request to backend
+  useEffect(() => {
+    fetch('/signup')
+    .then(res => res.json())
+    .then()
+  });
+
   return (
     <div className="SignUpOuterContainer">
       <h2 className="heading">Welcome to CodeCollab!</h2>
@@ -13,6 +20,7 @@ const SignUp = () => {
           <input
             className="SignUpInput"
             placeholder="Email/Username"
+            // state will be live updated with user input in the username field
             onChange={(event) => setUserName(event.target.value)}
             type="text"
           />
@@ -22,10 +30,12 @@ const SignUp = () => {
             className="SignUpInput mt-20"
             type="text"
             placeholder="Password"
+            // state will be live updated with user input in the password field
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
         <div>
+          {/* on successful signup, user is redirected to editor component */}
           <Link to="/editor">
             <button className="button mt-20" type="submit">
               Sign Up
