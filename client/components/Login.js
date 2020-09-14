@@ -4,6 +4,27 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [userObj, setUserObj] = useState(null);
+  const [filesArr, setFilesArr] = useState([]);
+
+  // fetch request to backend
+  useEffect(async () => {
+    try {
+      const response = await fetch('/login', {
+        method: 'post',
+        headers: { 'Content-type': 'application/json' },
+        body: { userName: userName, password: password }
+      })
+      const data = response.json()
+      setUserObj(data.user);
+      setFilesArr(data.files);
+    }
+    catch(err) {
+      if (err) {
+        console.log(`Invalid username or password, please try again`, err);
+      }
+    }
+  }, []);
 
   return (
     <div className="LoginOuterContainer">

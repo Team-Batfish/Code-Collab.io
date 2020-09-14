@@ -5,6 +5,13 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  // fetch request to backend
+  useEffect(() => {
+    fetch('/signup')
+    .then(res => res.json())
+    .then()
+  });
+
   return (
     <div className="SignUpOuterContainer">
       <h2 className="heading">Welcome to CodeCollab!</h2>
