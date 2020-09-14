@@ -86,7 +86,7 @@ function Editor() {
           value={code}
           mode={mode}
           fontSize={fontSize}
-          onChange={(e) => e.target.code}
+          onChange={(code) => setCode(code.target.value)}
         />
       </div>
     </div>

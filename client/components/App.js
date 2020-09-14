@@ -6,14 +6,18 @@ import Editor from "./Editor";
 
 function App() {
   return (
+    // wrapped components in react Router tag
     <Router>
       <div>
         <h1></h1>
       </div>
+      {/* route url to login component on app's 'home page' */}
       <Route path="/" exact component={Login} />
+      {/* route url to signup page */}
       <Route path="/signup">
         <SignUp />
       </Route>
+      {/* route url to editor component */}
       <Route path="/editor">
         <Editor />
       </Route>
