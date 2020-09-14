@@ -7,8 +7,9 @@ const bodyParser = require('body-parser');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
+const fileController = require('./controllers/fileController')
 
-const PORT = 3000;
+const PORT = 3333;
 const app = express();
 
 // websocket
@@ -46,7 +47,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-
+//handle file-save requests
+app.post('/save-file', fileController.saveFile, (req, res) => {
+  res.status(200).send(res.locals.message);
+})
 //handle sign-up requests
 app.post('/signup', userController.checkUsername, userController.encryptPassword, userController.createUser, cookieController.setCookie, (req, res) => {
   //returns a user object
