@@ -32,6 +32,14 @@ module.exports = {
   devServer: {
     //where to find the bundle
     publicPath: '/build/',
+    proxy: {
+      '/': 'http://localhost:3000/',
+      //socket.io connection
+      '/socket.io': {
+        target: 'http://localhost:3000/',
+        ws: true
+      }
+    },
   },
   resolve: {
     //allows us to leave file extension unspecified

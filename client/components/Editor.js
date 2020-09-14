@@ -3,6 +3,8 @@ import { split as SplitEditor } from "react-ace";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
 
+const socket = io('http://localhost:3000')
+
 // importing all mode which are lanuages
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-java";
@@ -31,6 +33,13 @@ function Editor() {
   const [theme, setTheme] = useState("monokai");
   const [splits, setSplits] = useState(2);
   const [orientation, setOrientation] = useState("beside");
+
+  useEffect(() => {
+    console.log('new room')
+    socket.on('new-ops event', (data) => {
+      console.log('client side:', data)
+    })
+  })
 
   const themes = [
     "monokai",
