@@ -3,6 +3,7 @@ const userController = {};
 
 //check username middleware
 userController.checkUsername = async (req, res, next) => {
+  //get username from request
   const {username} = req.body;
   try{
     //set value array and query string
