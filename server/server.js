@@ -2,18 +2,29 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
 const PORT = 3000;
 const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+//userController.createUser
+
 //handle sign-up requests
-app.post('/signup', (req, res) => {});
+app.post('/signup', userController.checkUsername, userController.createUser, cookieController.setCookie, (req, res) => {
+  res.status(200).json({user: res.locals.user, files: res.locals.filesArr});
+});
 //handle login requests
-app.post('/login', (req, res) => {});
+app.post('/login', userController.verifyUser, userController.getFiles, cookieController.setCookie, (req, res) => {
+  res.status(200).json({user: res.locals.user, files: res.locals.filesArr});
+});
 //handle log-out requests
-app.post('/logout', (req, res) => {});
+app.post('/logout', (req, res) => {
+  res.clearCookie();
+});
 
 
 
