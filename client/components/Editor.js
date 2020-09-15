@@ -38,10 +38,10 @@ function Editor() {
   const [splitScreen, setSplitScreen] = useState(1);
   //only use if we are using split split screen componen
   const [orientation, setOrientation] = useState("beside");
-  const [valueText, setValueText] = useState(
-    "function CodeCollab () {\n console.log('start code collab')\n}"
-  );
-  const [code, setCode] = useState("");
+  // const [valueText, setValueText] = useState(
+  //   "function CodeCollab () {\n console.log('start code collab')\n}"
+  // );
+  const [code, setCode] = useState("Hey");
   const [room, setRoom] = useState("");
   const [fontSize, setFontSize] = useState(16);
 
@@ -77,9 +77,27 @@ function Editor() {
 
   const fontSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
+
+  useEffect(() => {
+   
+    socket.on('message', (data) => {
+       console.log('new room')
+      setCode(data)
+      socket.to(socket.id).emit('message', data);
+    })
+    
+  })
+
+
+ const handleChange = e => {
+   const {value} = e.target;
+   
+  };
+
+
   return (
     <div>
-      <div>
+      <div className="editor">
         <InputRoom />
         <AceEditor
           theme={theme}

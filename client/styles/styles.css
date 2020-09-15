@@ -5,15 +5,18 @@
 }
 
 body {
-  background-color: ghostwhite;
+  background-color: #b1ade2;
+  background-image: linear-gradient(315deg, #b1ade2 0%, #7ddff8 74%);
 }
 
 /* LOGIN PAGE */
 
 .heading {
   margin-top: 70px;
-  font-family: "Roboto Mono", sans-serif;
-  padding-bottom: 300px;
+  font-family: 'Karla', sans-serif;
+  padding-bottom: 200px;
+  font-size: 100px;
+  color: white;
 }
 
 .LoginOuterContainer {
@@ -21,10 +24,33 @@ body {
 }
 
 .LoginInnerContainer {
-  font-family: "Roboto", sans-serif;
-  background-color: rgb(211, 211, 218);
+  font-family: 'Karla', sans-serif;
+  background-color: rgba(245, 245, 245, 0.454);
   width: 25%;
   padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 250px;
+}
+
+.LoginInnerContainer input:focus {
+  outline: none;
+}
+
+.LoginInnerContainer input {
+  margin:10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid white;
+}
+
+.LoginInnerContainer button {
+ border: none;
+ height: 20px;
+ width: 50px;
+}
+
+.LoginInnerContainer button:focus {
+  outline: none;
 }
 
 /* SIGNUP PAGE */
@@ -34,8 +60,69 @@ body {
 }
 
 .SignUpInnerContainer {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Karla', sans-serif;
   background-color: rgb(211, 211, 218);
   width: 25%;
   padding: 20px;
+}
+
+.SignUpInnerContainer input:focus {
+  outline: none;
+}
+
+.SignUpInnerContainer input {
+  margin:10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid white;
+}
+
+.SignUpInnerContainer button {
+  border: none;
+  height: 20px;
+  width: 50px;
+ }
+
+ .SignUpInnerContainer button:focus {
+  outline: none;
+}
+
+.SignUpInnerContainer {
+  font-family: 'Karla', sans-serif;
+  background-color: rgba(245, 245, 245, 0.454);
+  width: 25%;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 250px;
+}
+
+.editor {
+  margin-bottom: 300px;
+}
+
+.inputRoomField {
+  font-family: 'Karla', sans-serif;
+  width: 25%;
+  padding: 20px;
+}
+
+.inputRoomField input {
+  margin:10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid white;
+}
+
+.inputRoomField input:focus {
+  outline: none;
+}
+
+.inputRoomField button:focus {
+  outline: none;
+}
+
+.inputRoomField button {
+  border: none;
+  height: 30px;
+  width: 50px;
 }
