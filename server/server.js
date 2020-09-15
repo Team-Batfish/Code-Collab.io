@@ -9,7 +9,7 @@ const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const fileController = require('./controllers/fileController')
 
-const PORT = 3333;
+const PORT = 3000;
 const app = express();
 
 // websocket

@@ -69,13 +69,16 @@ userController.createUser = async (req, res, next) => {
 }
 
 userController.verifyUser = async (req, res, next) => {
+  console.log("made it to verify");
   const {username, password} = req.body;
+  console.log("username:", username, "password:", password)
   try{
     //set value array and query string
     const values = [username];
     const QUERY = "SELECT * FROM users WHERE name = $1"
     //query DB for user with specified username
     const result = await db.query(QUERY, values);
+    console.log(result.rows[0]);
 
     //if user with username already exists
     if(result.rows.length === 0) return next({

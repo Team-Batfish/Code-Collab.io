@@ -33,7 +33,7 @@ module.exports = {
     //where to find the bundle
     publicPath: '/build/',
     proxy: {
-      '/': 'http://localhost:3000/',
+      '/': 'http://localhost:3000',
       //socket.io connection
       '/socket.io': {
         target: 'http://localhost:3000/',
