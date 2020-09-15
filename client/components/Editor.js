@@ -38,19 +38,12 @@ function Editor() {
   const [splitScreen, setSplitScreen] = useState(1);
   //only use if we are using split split screen componen
   const [orientation, setOrientation] = useState("beside");
-  const [valueText, setValueText] = useState(
-    "function CodeCollab () {\n console.log('start code collab')\n}"
-  );
-  const [code, setCode] = useState("");
+  // const [valueText, setValueText] = useState(
+  //   "function CodeCollab () {\n console.log('start code collab')\n}"
+  // );
+  const [code, setCode] = useState("Hey");
   const [room, setRoom] = useState("");
   const [fontSize, setFontSize] = useState(16);
-
-  useEffect(() => {
-    console.log('new room')
-    socket.on('new-ops event', (data) => {
-      console.log('client side:', data)
-    })
-  })
 
   const themes = [
     "monokai",
@@ -78,45 +71,35 @@ function Editor() {
 
   const fontSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
+
+  useEffect(() => {
+   
+    socket.on('message', (data) => {
+       console.log('new room')
+      setCode(data)
+      socket.to(socket.id).emit('message', data);
+    })
+    
+  })
+
+
+ const handleChange = e => {
+   const {value} = e.target;
+   
+  };
+
+
   return (
     <div>
-      <div>
+      <div className="editor">
         <InputRoom />
-        <SplitEditor
+        <AceEditor
           theme={theme}
-          value={valueText}
+          value={code}
           mode={mode}
           fontSize={fontSize}
+          onChange={handleChange}
         />
-        <div>
-          <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-            {themes.map((themeOption, idx) => (
-              <option key={idx.toString()} value={themeOption}>
-                {themeOption}
-              </option>
-            ))}
-          </select>
-          <select value={mode} onChange={(e) => setMode(e.target.value)}>
-            {modes.map((modeOption, idx) => (
-              <option key={idx.toString()} value={modeOption}>
-                {modeOption}
-              </option>
-            ))}
-          </select>
-          <select
-            value={fontSize}
-            onChange={(e) => setFontSize(e.target.value)}
-          >
-            {fontSizes.map((fontOption, idx) => (
-              <option key={idx.toString()} value={fontOption}>
-                {fontOption}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <XTerm />
-        </div>
       </div>
     </div>
   );
