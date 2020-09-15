@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { split as SplitEditor } from "react-ace";
+//import { split as SplitEditor } from "react-ace";
 import AceEditor from "react-ace";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
 import InputRoom from "./InputRoom";
 import { XTerm } from "xterm-for-react";
-
-const socket = io('http://localhost:3000')
+import ToolBox from "./ToolBox";
+const socket = io("http://localhost:3000");
 
 // importing all mode which are lanuages
 import "ace-builds/src-noconflict/mode-javascript";
@@ -44,6 +44,12 @@ function Editor() {
   const [code, setCode] = useState("Hey");
   const [room, setRoom] = useState("");
   const [fontSize, setFontSize] = useState(16);
+
+  useEffect(() => {
+    socket.on("new-ops event", (data) => {
+      console.log("client side:", data);
+    });
+  });
 
   const themes = [
     "monokai",
@@ -98,7 +104,7 @@ function Editor() {
           value={code}
           mode={mode}
           fontSize={fontSize}
-          onChange={handleChange}
+          onChange={(code) => setCode(code.target.value)}
         />
       </div>
     </div>
