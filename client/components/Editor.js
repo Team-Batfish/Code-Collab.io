@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { split as SplitEditor } from "react-ace";
+//import { split as SplitEditor } from "react-ace";
+import AceEditor from "react-ace";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
-
-const socket = io('http://localhost:3000')
+import InputRoom from "./InputRoom";
+import { XTerm } from "xterm-for-react";
+import ToolBox from "./ToolBox";
+const socket = io("http://localhost:3000");
 
 // importing all mode which are lanuages
 import "ace-builds/src-noconflict/mode-javascript";
@@ -29,17 +32,24 @@ import "ace-builds/src-noconflict/theme-terminal";
 import "ace-builds/src-noconflict/theme-clouds_midnight";
 
 function Editor() {
-  const [mode, setmode] = useState("javascript");
+  const [mode, setMode] = useState("javascript");
   const [theme, setTheme] = useState("monokai");
-  const [splits, setSplits] = useState(2);
+  //only use if we are using split split screen component
+  const [splitScreen, setSplitScreen] = useState(1);
+  //only use if we are using split split screen componen
   const [orientation, setOrientation] = useState("beside");
+  const [valueText, setValueText] = useState(
+    "function CodeCollab () {\n console.log('start code collab')\n}"
+  );
+  const [code, setCode] = useState("");
+  const [room, setRoom] = useState("");
+  const [fontSize, setFontSize] = useState(16);
 
   useEffect(() => {
-    console.log('new room')
-    socket.on('new-ops event', (data) => {
-      console.log('client side:', data)
-    })
-  })
+    socket.on("new-ops event", (data) => {
+      console.log("client side:", data);
+    });
+  });
 
   const themes = [
     "monokai",
@@ -65,10 +75,19 @@ function Editor() {
     "coffee",
   ];
 
+  const fontSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
   return (
     <div>
       <div>
-        <SplitEditor theme={theme} />
+        <InputRoom />
+        <AceEditor
+          theme={theme}
+          value={code}
+          mode={mode}
+          fontSize={fontSize}
+          onChange={(code) => setCode(code.target.value)}
+        />
       </div>
     </div>
   );
